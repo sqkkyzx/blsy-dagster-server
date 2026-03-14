@@ -1,0 +1,2 @@
+load_from:   # Each entry here corresponds to a service in the docker-compose file that exposes user code.
+  - python_file: default.py
