@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: blsy-dagster-server
+Version: 1.12.19.0
+Summary: BLSY Dagster Server
+Requires-Python: >=3.13
+Requires-Dist: dagster==1.12.19
+Requires-Dist: dagster-webserver
+Requires-Dist: dagster-postgres
+Requires-Dist: dagster-duckdb
+Requires-Dist: dagster-pandas

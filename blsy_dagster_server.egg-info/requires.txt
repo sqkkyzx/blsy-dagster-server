@@ -1,0 +1,5 @@
+dagster==1.12.19
+dagster-webserver
+dagster-postgres
+dagster-duckdb
+dagster-pandas

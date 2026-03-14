@@ -1,39 +1,15 @@
-FROM sqkkyzx/blsy-dagster-server:latest
+FROM python:3.13-slim
 
-ADD https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/v0.4.41/grpc_health_probe-linux-amd64 /bin/grpc_health_probe
-RUN chmod +x /bin/grpc_health_probe
+ENV DAGSTER_HOME=/opt/dagster/dagster_home/ \
+    PYTHONUNBUFFERED=1
 
-# 安装 ffmpeg 和相关解码器
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ffmpeg \
-    libavcodec-extra \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir --upgrade pip uv
 
-# 升级 pip 和 uv
-RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir --upgrade uv
+WORKDIR $DAGSTER_HOME
 
-# 其他软件包
-RUN uv pip install --system --no-cache-dir --upgrade \
-    psycopg[binary]  \
-    colorama  \
-    orjson  \
-    portalocker  \
-    playwright==1.54.0  \
-    markitdown  \
-    lxml  \
-    openpyxl  \
-    pycron  \
-    py-grafana-render==0.1.11 \
-    opencv-contrib-python \
-    loguru \
-    pydantic \
-    smbprotocol \
-    dagster-qcloud-cos \
-    dagster-dingtalk \
-    dagster-dify==0.27.15.1
+COPY --chmod=755 entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY pyproject.toml uv.lock* ./default-config/ ./
 
-EXPOSE 4000
+RUN uv pip install --system --no-cache-dir --no-verify-hashes .
 
-WORKDIR /opt/dagster/dagster_home/code/
-ENTRYPOINT ["dagster", "code-server", "start", "-h", "0.0.0.0", "-p", "4000"]
-CMD ["-f", "definitions.py"]
+COPY /default-config/ /opt/dagster/dagster_home/

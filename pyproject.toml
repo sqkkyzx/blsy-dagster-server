@@ -1,6 +1,18 @@
 [project]
-name = "dagster-server"
-version = "0.1.0"
-description = "Add your description here"
-requires-python = ">=3.12"
-dependencies = []
+name = "blsy-dagster-server"
+version = "1.12.19.0"
+description = "BLSY Dagster Server"
+requires-python = ">=3.13"
+dependencies = [
+    # server
+    "dagster==1.12.19",
+    "dagster-webserver",
+    "dagster-postgres",
+    "dagster-duckdb",
+    "dagster-pandas"
+]
+[tool.uv]
+environments = [
+    "sys_platform == 'win32'",
+    "sys_platform == 'linux'"
+]
