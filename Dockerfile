@@ -8,8 +8,6 @@ RUN pip install --no-cache-dir --upgrade pip uv
 WORKDIR $DAGSTER_HOME
 
 COPY --chmod=755 entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY pyproject.toml uv.lock* default-config/ ./
+COPY pyproject.toml uv.lock* ./default-config/ ./
 
 RUN uv pip install --system --no-cache-dir --no-verify-hashes .
-
-COPY /default-config/ /opt/dagster/dagster_home/
