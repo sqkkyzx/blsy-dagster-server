@@ -1,6 +1,6 @@
 [project]
 name = "blsy-dagster-server"
-version = "1.12.19.0"
+version = "1.12.19.1"
 description = "BLSY Dagster Server"
 requires-python = ">=3.13"
 dependencies = [

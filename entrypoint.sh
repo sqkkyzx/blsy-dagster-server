@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# 确保 DAGSTER_HOME 目录存在
+mkdir -p "$DAGSTER_HOME"
+
 # --- 内部变量映射 ---
 # DG_ 前缀有效避免了与其他工具或基础镜像可能存在的 WEB_PORT 冲突
 DG_WEB_PORT=${DAGSTER_WEBSERVER_PORT:-3000}

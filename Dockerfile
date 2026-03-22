@@ -11,3 +11,7 @@ COPY --chmod=755 entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY pyproject.toml uv.lock* default-config/ ./
 
 RUN uv pip install --system --no-cache-dir --no-verify-hashes .
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+CMD ["webserver"]
