@@ -1,6 +1,6 @@
 [project]
 name = "blsy-dagster-server"
-version = "1.13.8.0"
+version = "1.13.8.1"
 description = "BLSY Dagster Server"
 readme = "README.md"
 requires-python = ">=3.14"
@@ -10,7 +10,8 @@ dependencies = [
     "dagster-webserver",
     "dagster-postgres",
     "dagster-duckdb",
-    "dagster-pandas"
+    "dagster-pandas",
+    "dagster-aws",
 ]
 [tool.uv]
 environments = [
