@@ -1,6 +1,6 @@
 [project]
 name = "blsy-dagster-server"
-version = "1.13.25.0"
+version = "1.13.25.1"
 description = "BLSY Dagster Server"
 readme = "README.md"
 requires-python = ">=3.14"
@@ -12,6 +12,7 @@ dependencies = [
     "dagster-duckdb",
     "dagster-pandas",
     "dagster-aws",
+    "psycopg[binary]",
 ]
 [tool.uv]
 environments = [
